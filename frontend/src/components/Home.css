@@ -1,0 +1,29 @@
+.home-container {
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f9;
+  }
+  
+  .welcome-title {
+    color: #2c3e50;
+    font-size: 36px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .intro-paragraph {
+    color: #34495e;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: justify;
+  }
+  
+  .intro-paragraph:hover {
+    color: #2980b9;
+    transition: color 0.3s ease;
+  }
+  
