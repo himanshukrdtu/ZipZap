@@ -22,7 +22,7 @@ const StoreOperatorDashboard = () => {
     const fetchOrders = async () => {
       try {
         const { data } = await axios.get(
-          `http://localhost:8000/api/v1/store/operator/${operatorId}/orders`,
+          `https://render-zipzap-backend-deployment.onrender.com/api/v1/store/operator/${operatorId}/orders`,
           { withCredentials: true }
         );
 
@@ -81,7 +81,7 @@ const StoreOperatorDashboard = () => {
       setPendingOrders(prev => prev.filter(o => o.id !== order.id));
       setOrderHistory(prev => [...prev, { ...order, currentStatus: 'Delivered' }]);
 
-      axios.patch(`http://localhost:8000/api/v1/order/${order.id}/status`, {
+      axios.patch(`https://render-zipzap-backend-deployment.onrender.com/api/v1/order/${order.id}/status`, {
         status: 'Delivered'
       })
       .then(response => {

@@ -70,12 +70,12 @@ const handlePlaceOrder = async () => {
 
   try {
      
-    const response = await axios.post('http://localhost:8000/api/v1/order/create', orderData);
+    const response = await axios.post('https://render-zipzap-backend-deployment.onrender.com/api/v1/order/create', orderData);
     const newOrder = response.data.order;
     const { latitude, longitude } = newOrder.shippingInfo;
     
      
-    const storeRes = await axios.get('http://localhost:8000/api/v1/store/get-allstores');
+    const storeRes = await axios.get('https://render-zipzap-backend-deployment.onrender.com/api/v1/store/get-allstores');
     const stores = storeRes.data.stores;
      
      
@@ -98,7 +98,7 @@ const handlePlaceOrder = async () => {
     }
 
      
-    await axios.post('http://localhost:8000/api/v1/store/add-order', {
+    await axios.post('https://render-zipzap-backend-deployment.onrender.com/api/v1/store/add-order', {
       store_id: nearestStore.store_id,
       orderId: newOrder._id
     });

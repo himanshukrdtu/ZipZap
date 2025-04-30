@@ -18,7 +18,7 @@ function UserDashboard() {
   useEffect(() => {
     let isMounted = true;
     axios
-      .get('http://localhost:8000/api/v1/product/getAllProducts')
+      .get('https://render-zipzap-backend-deployment.onrender.com/api/v1/product/getAllProducts')
       .then(response => {
         if (isMounted) {
           setProducts(response.data.products);

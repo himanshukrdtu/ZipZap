@@ -17,7 +17,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "http://localhost:8000/api/v1/user/login",
+         "https://render-zipzap-backend-deployment.onrender.com/api/v1/user/login",
         { email, password },
         {
           headers: {
