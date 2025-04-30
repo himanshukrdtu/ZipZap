@@ -1,13 +1,11 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 import "./Login.css";
 
 function Login() {
-  const { user, login } = useUser();
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { user, login } = useUser();  
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -25,7 +23,7 @@ function Login() {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,  
+          withCredentials: true,
         }
       );
 
@@ -35,22 +33,32 @@ function Login() {
         
         localStorage.setItem("user", JSON.stringify(data.user));
 
-        login(data.user);  
+        
+        login(data.user);
 
-        setIsLoggedIn(true);
         alert("Login successful!");
-        navigate("/");
+
+         
+        if (data.user.role === "admin") {
+          navigate("/admin-dashboard");
+        } else if (data.user.role === "store_operator") {
+          navigate("/store-dashboard");
+        } else {
+          navigate("/user-dashboard");
+        }
       } else {
         setError(data.message || "Login failed");
       }
     } catch (error) {
+      console.error("Login error:", error);
       setError("Network error or server not responding");
     }
   };
 
   useEffect(() => {
-    console.log("Updated user in context:", user);
-  }, [user]);
+    const savedUser = localStorage.getItem("user");
+    console.log("User from localStorage:", savedUser ? JSON.parse(savedUser) : null);
+  }, []);
 
   return (
     <div className="login-container">

@@ -1,34 +1,37 @@
-import express from "express"; // Import the express module for creating the web server
-import cookieParser from "cookie-parser"; // Import the cookie-parser middleware for handling cookies
-import cors from "cors"; // Import the cors middleware to enable Cross-Origin Resource Sharing (CORS)
-import dotenv from "dotenv"; // Import dotenv to load environment variables from a .env file
-import connectDB from "./config/db.js"; // Import the database connection function
-import userRoute from "./routes/user.routes.js"; // Import the user routes for handling API requests related to users
+import express from "express";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import dotenv from "dotenv";
+import connectDB from "./config/db.js";
+import userRoute from "./routes/user.routes.js";
+import productRoute from "./routes/product.routes.js";
+import storeRoute from "./routes/store.routes.js";
+import orderRoute from "./routes/order.routes.js";
 
-dotenv.config({}); // Load environment variables from the .env file into `process.env`
+dotenv.config();
 
-const app = express(); // Create an Express application
+const app = express();
 
-// middleware
-app.use(express.json()); // You're telling Express to automatically convert the incoming JSON data from the request into a JavaScript object.
-app.use(express.urlencoded({ extended: true })); // You're telling Express to automatically convert the incoming URL-encoded data (typically from form submissions) into a JavaScript object.
-app.use(cookieParser()); // Middleware to parse cookies from incoming requests
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
-// CORS configuration
 const corsOptions = {
-    origin: 'http://localhost:5173', // Specify the allowed origin (frontend URL)
-    credentials: true // Allow cookies to be sent with requests
+    origin: 'http://localhost:5173',
+    credentials: true
 }
 
-app.use(cors(corsOptions)); // Apply the CORS configuration to the app
+app.use(cors(corsOptions));
 
-const PORT = process.env.PORT || 3000; // Set the port for the server to listen on, default to 3000 if not specified in environment variables
+const PORT = process.env.PORT || 3000;
 
-// API routes
-app.use("/api/v1/user", userRoute); // Mount the user routes at the "/api/v1/user" endpoint
+app.use("/api/v1/user", userRoute);
+app.use("/api/v1/product", productRoute);
+app.use("/api/v1/store", storeRoute);
+app.use("/api/v1/order", orderRoute);
 
-// Start the server
+
 app.listen(PORT, () => {
-    connectDB(); // Connect to the database when the server starts
-    console.log(`Server running at port ${PORT}`); // Log a message indicating the server is running and listening
+    connectDB();
+    console.log(`Server running at port ${PORT}`);
 })

@@ -2,6 +2,7 @@
     font-family: 'Arial', sans-serif;
     padding: 20px;
     text-align: center;
+    margin-top: 100px;
     background-color: #f4f4f9;
   }
   
@@ -13,7 +14,7 @@
   }
   
   .intro-paragraph {
-    color: #34495e;
+    color: rgb(98, 97, 97);
     font-size: 18px;
     line-height: 1.6;
     max-width: 800px;
@@ -21,9 +22,12 @@
     padding: 0 20px;
     text-align: justify;
   }
-  
-  .intro-paragraph:hover {
-    color: #2980b9;
-    transition: color 0.3s ease;
+  .yellow{
+    color:#e0a80e;
   }
+  .green{
+    color:rgba(9, 125, 34, 0.833);
+  }
+  
+   
   

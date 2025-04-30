@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import './Register.css';
 
 function Register() {
@@ -7,6 +7,7 @@ function Register() {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [role, setRole] = useState('user');  
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
 
@@ -24,7 +25,8 @@ function Register() {
       fullname,
       email,
       phoneNumber,
-      password
+      password,
+      role,  
     };
 
     try {
@@ -45,6 +47,7 @@ function Register() {
         setPhoneNumber('');
         setPassword('');
         setConfirmPassword('');
+        setRole('user');  
       } else {
         setError(data.message || 'Registration failed');
       }
@@ -68,6 +71,7 @@ function Register() {
             required 
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="email" className="form-label">Email</label>
           <input 
@@ -79,6 +83,7 @@ function Register() {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="phoneNumber" className="form-label">Phone Number</label>
           <input 
@@ -90,6 +95,7 @@ function Register() {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="password" className="form-label">Password</label>
           <input 
@@ -101,6 +107,7 @@ function Register() {
             required
           />
         </div>
+
         <div className="form-group">
           <label htmlFor="confirm-password" className="form-label">Confirm Password</label>
           <input 
@@ -112,10 +119,29 @@ function Register() {
             required
           />
         </div>
+
+        
+        <div className="form-group">
+          <label htmlFor="role" className="form-label">Select Role</label>
+          <select 
+            id="role" 
+            className="form-input" 
+            value={role} 
+            onChange={(e) => setRole(e.target.value)} 
+            required
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+            <option value="store_operator">Store Operator</option>
+          </select>
+        </div>
+
         {error && <p className="error-message">{error}</p>}
         {success && <p className="success-message">{success}</p>}
+
         <button type="submit" className="register-btn">Register</button>
       </form>
+
       <div className="login-link">
         <p>Already have an account? <a href="/login">Login</a></p>
       </div>

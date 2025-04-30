@@ -1,5 +1,5 @@
 import React from 'react';
-import './Footer.css';  
+import './Footer.css';
 
 const Footer = () => {
   return (
@@ -10,8 +10,7 @@ const Footer = () => {
       <div>
         <a href="https://www.linkedin.com/in/himanshu" target="_blank" rel="noopener noreferrer">
           LinkedIn
-        </a> 
-        |
+        </a> |
         <a href="mailto:himanshu@example.com" target="_blank" rel="noopener noreferrer">
           Email
         </a>
@@ -19,5 +18,7 @@ const Footer = () => {
     </footer>
   );
 };
+
+ 
 
 export default Footer;
